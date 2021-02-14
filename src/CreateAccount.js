@@ -36,6 +36,9 @@ import Header from './Header';
       .then((response) => {
         Alert.alert("Account created successfully");
       })
+      .then((response) => {
+        this.props.navigation.navigate('Login');
+      })
       .catch ((error) =>  {
       console.log(error);
     })

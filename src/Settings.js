@@ -6,7 +6,7 @@ import { StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity} from '
 import Header from './Header';
 
 
-   class Login extends Component {
+   class Settings extends Component {
 
   render(){
 
@@ -15,15 +15,10 @@ import Header from './Header';
     return (
       <View style={styles.container}>
         <Header />
-        <ScrollView>
-        <Text style={styles.title}>Log in</Text>
-        <TextInput style={styles.inputBox} placeholder='Email' />
-        <TextInput style={styles.inputBox} placeholder='Password' />
         <TouchableOpacity
-         onPress={() => navigation.navigate('Nav')}>
-          <Text style={styles.submitButton}>Log in</Text>
+          onPress={() => navigation.navigate('Login')}>
+          <Text style={styles.logout}>Log out</Text>
         </TouchableOpacity>
-        </ScrollView>
       </View>
     )
   };
@@ -73,16 +68,17 @@ const styles = StyleSheet.create({
 
   },
 
-  login: {
-    textAlign: 'center',
+  logout: {
+    textAlign: 'left',
     color: '#737373',
     textDecorationLine: 'underline',
-    fontSize: 18,
-    marginTop: 10
+    fontSize: 20,
+    marginTop: 20,
+    marginLeft: 20,
   }
 
 
 })
 
 
-export default Login
+export default Settings

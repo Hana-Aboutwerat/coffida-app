@@ -1,13 +1,13 @@
 import 'react-native-gesture-handler';
 
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, Image, TextInput, ScrollView, Button} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 
 import CreateAccount from './src/CreateAccount';
 import Login from './src/Login';
+import Nav from './src/Nav';
 
 
 const Stack = createStackNavigator();
@@ -18,8 +18,9 @@ class App extends Component {
     return ( 
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Create Account" component={CreateAccount} />
-          <Stack.Screen name="Log in" component={Login} />
+          <Stack.Screen name="CreateAccount" component={CreateAccount} options={{headerShown: false}} />
+          <Stack.Screen name="Login" component={Login} options={{headerShown: false}} />
+          <Stack.Screen name="Nav" component={Nav} options={{headerShown: false}} />
         </Stack.Navigator>
       </NavigationContainer>  
     )
