@@ -1,12 +1,50 @@
 import 'react-native-gesture-handler';
 
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity, ToastAndroid} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Header from './Header';
 
 
    class Login extends Component {
+     constructor(props){
+       super(props);
+
+       this.state = {
+         email: "",
+         password: ""
+       }
+     }
+
+     login = async () => {
+
+      return fetch('http://10.0.2.2:3333/api/1.0.0/user/login', {
+        method: 'post',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(this.state)
+      })
+      .then((response) => {
+        if(response.status === 200){
+          return response.json()
+        } else if(response.status === 400){
+          throw 'Invalid email or password';
+        } else {
+          throw 'Something went wrong'
+        }
+      })
+      .then(async (responseJson) => {
+        console.log(responseJson);
+        await AsyncStorage.setItem('@session_token', responseJson.token);
+        this.props.navigation.navigate("Nav");
+      })
+      .catch((error) => {
+        console.log(error);
+        ToastAndroid.show(error, ToastAndroid.SHORT);
+      })
+     }
 
   render(){
 
@@ -17,10 +55,10 @@ import Header from './Header';
         <Header />
         <ScrollView>
         <Text style={styles.title}>Log in</Text>
-        <TextInput style={styles.inputBox} placeholder='Email' />
-        <TextInput style={styles.inputBox} placeholder='Password' />
+        <TextInput style={styles.inputBox} placeholder='Email' onChangeText={(email) => this.setState({email})} value={this.state.email}/>
+        <TextInput style={styles.inputBox} placeholder='Password' secureTextEntry={true} onChangeText={(password) => this.setState({password})} value={this.state.password} />
         <TouchableOpacity
-         onPress={() => navigation.navigate('Nav')}>
+          onPress={() => this.login()} >
           <Text style={styles.submitButton}>Log in</Text>
         </TouchableOpacity>
         </ScrollView>
