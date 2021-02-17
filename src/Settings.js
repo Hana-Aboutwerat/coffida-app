@@ -4,9 +4,32 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity} from 'react-native';
 
 import Header from './Header';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
    class Settings extends Component {
+
+    logout = async () => {
+      let token = await AsyncStorage.getItem('@session_token');
+      await AsyncStorage.removeItem('@session_token');
+      return fetch("http://10.0.2.2:3333/api/1.0.0/user/logout", {
+        method: 'post',
+        headers: {
+          "X-Authorization": token
+        }
+      })
+      .then((response) => {
+        if(response.status === 200){
+          this.props.navigation.navigate("Login");
+        } else {
+          throw 'Something went wrong'
+        }
+        })
+      .catch((error) => {
+          console.log(error);
+          ToastAndroid.show(error, ToastAndroid.SHORT);
+      })
+    }
 
   render(){
 
@@ -16,7 +39,7 @@ import Header from './Header';
       <View style={styles.container}>
         <Header />
         <TouchableOpacity
-          onPress={() => this.logOut()} >
+          onPress={() => this.logout()} >
           <Text style={styles.submitButton}>Log out</Text>
         </TouchableOpacity>
       </View>
