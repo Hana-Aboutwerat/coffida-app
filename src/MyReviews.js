@@ -6,7 +6,7 @@ import { StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity} from '
 import Header from './Header';
 
 
-   class Home extends Component {
+   class MyReviews extends Component {
 
   render(){
 
@@ -15,7 +15,7 @@ import Header from './Header';
     return (
       <View style={styles.container}>
         <Header />
-        <Text style={styles.title}>Find the best local coffee shops</Text>
+        <Text>My Reviews</Text>
       </View>
     )
   };
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
 
   title: {
     color: '#388dcb',
-    fontSize: 21,
+    fontSize: 25,
     textAlign: 'center',
     marginTop: 35,
     fontWeight: 'bold',
@@ -65,16 +65,17 @@ const styles = StyleSheet.create({
 
   },
 
-  login: {
-    textAlign: 'center',
+  logout: {
+    textAlign: 'left',
     color: '#737373',
     textDecorationLine: 'underline',
-    fontSize: 18,
-    marginTop: 10
+    fontSize: 20,
+    marginTop: 20,
+    marginLeft: 20,
   }
 
 
 })
 
 
-export default Home
+export default MyReviews

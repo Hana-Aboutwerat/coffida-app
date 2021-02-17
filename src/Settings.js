@@ -16,8 +16,8 @@ import Header from './Header';
       <View style={styles.container}>
         <Header />
         <TouchableOpacity
-          onPress={() => navigation.navigate('Login')}>
-          <Text style={styles.logout}>Log out</Text>
+          onPress={() => this.logOut()} >
+          <Text style={styles.submitButton}>Log out</Text>
         </TouchableOpacity>
       </View>
     )
@@ -63,19 +63,12 @@ const styles = StyleSheet.create({
     textAlign:'center',
     fontSize: 20,
     borderRadius: 5,
-    marginTop: 25,
+    marginTop: '55%',
     marginLeft: 140
 
   },
 
-  logout: {
-    textAlign: 'left',
-    color: '#737373',
-    textDecorationLine: 'underline',
-    fontSize: 20,
-    marginTop: 20,
-    marginLeft: 20,
-  }
+
 
 
 })

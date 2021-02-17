@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity, Image} from 'react-native';
 
 import Header from './Header';
 
@@ -15,7 +15,29 @@ import Header from './Header';
     return (
       <View style={styles.container}>
         <Header />
-        <Text>Profile</Text>
+        <ScrollView>
+        <Text style={styles.profileTitle}>Profile</Text>
+        {/* <Image 
+          style={{width: 130, height: 130, }}
+          source={require('./Images/Profile.png')}
+          /> */}
+        <Text style={styles.info}>FIRST NAME</Text>
+        <Text style={styles.info}>LAST NAME</Text>
+        <Text style={styles.info}>EMAIL</Text>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('MyReviews')}>
+          <Text style={styles.link}>My Reviews</Text>
+        </TouchableOpacity>
+        <Text style={styles.title2}>Update Info</Text>
+        <TextInput  style={styles.inputBox2} placeholder='First Name' />
+        <TextInput  style={styles.inputBox2} placeholder='Last Name' />
+        <TextInput  style={styles.inputBox2} placeholder='Email' />
+        <TextInput style={styles.inputBox2} placeholder='Password' />
+        <TouchableOpacity
+          onPress={() => this.update()} >
+          <Text style={styles.submitButton}>Update</Text>
+        </TouchableOpacity>
+        </ScrollView>
       </View>
     )
   };
@@ -28,23 +50,25 @@ const styles = StyleSheet.create({
     backgroundColor: '#F8F8FF'
   },
 
-  title: {
+  title2: {
     color: '#388dcb',
-    fontSize: 25,
-    textAlign: 'center',
-    marginTop: 35,
+    fontSize: 23,
+    textAlign: 'left',
+    marginTop: 15,
     fontWeight: 'bold',
-    marginBottom: 25
+    marginBottom: 10,
+    marginLeft: 25,
   },
 
-  inputBox: {
+  inputBox2: {
     width: 250,
     backgroundColor: '#F8F8FF',
     borderColor: '#63ace1',
     borderWidth: 2,
     borderRadius: 5,
-    marginTop: 12,
-    marginLeft: 83,
+    marginTop: 6,
+    marginTop: 7,
+    marginLeft: 25,
     paddingHorizontal: 16,
     color: '#a6a6a6',
     fontSize: 18
@@ -60,8 +84,9 @@ const styles = StyleSheet.create({
     textAlign:'center',
     fontSize: 20,
     borderRadius: 5,
-    marginTop: 25,
-    marginLeft: 140
+    marginTop: 18,
+    marginLeft: 30,
+    marginBottom: 10
 
   },
 
@@ -71,6 +96,33 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
     fontSize: 18,
     marginTop: 10
+  },
+
+  profileTitle: {
+    color: '#388dcb',
+    fontSize: 25,
+    textAlign: 'left',
+    marginTop: 20,
+    fontWeight: 'bold',
+    marginLeft: 25
+  },
+
+  info: {
+    color: 'gray',
+    fontSize: 19,
+    textAlign: 'left',
+    marginTop: 12,
+    marginLeft: 25
+  },
+
+  link: {
+    textAlign: 'left',
+    color: '#388dcb',
+    textDecorationLine: 'underline',
+    fontSize: 20,
+    marginTop: 10,
+    marginLeft: 25,
+    fontWeight: 'bold',
   }
 
 
