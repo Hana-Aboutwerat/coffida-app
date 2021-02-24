@@ -21,7 +21,7 @@ import Header from './Header';
   
       updateFirstName = async () => {
         let to_send = {
-          last_name: this.state.lastName
+          first_name: this.state.firstName
         };
     
         const ID = await AsyncStorage.getItem('@user_id');

@@ -19,8 +19,15 @@ import Header from './Header';
       }
     }
 
+
     componentDidMount(){
-      this.getInfo()
+      this._unsubscribe = this.props.navigation.addListener('focus', () => {
+        this.getInfo();
+      });   
+    }
+
+    componentWillUnmount(){
+      this._unsubscribe();
     }
 
     getInfo = async () => {
