@@ -1,12 +1,64 @@
 import 'react-native-gesture-handler';
 
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity, Image} from 'react-native';
+import { StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity, ToastAndroid} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Header from './Header';
 
 
    class Profile extends Component {
+    constructor(props){
+      super(props);
+
+      this.state = {
+       isLoading: true,
+       firstName: '',
+       lastName: '',
+       email: '',
+      }
+    }
+
+    componentDidMount(){
+      this.getInfo()
+    }
+
+    getInfo = async () => {
+      const ID = await AsyncStorage.getItem('@user_id');
+      const id = JSON.parse(ID);
+      const value = await AsyncStorage.getItem('@session_token');
+      return fetch("http://10.0.2.2:3333/api/1.0.0/user/" + id, {
+        'headers': {
+          'Content-type': 'application/json',
+          'X-Authorization': value
+        }
+      })
+      .then((response) => {
+        if(response.status === 200){
+          return response.json()
+        } else if(response.status === 401){
+          throw 'Unauthorised';
+        }
+       else if(response.status === 404){
+        throw 'Not found';
+       }
+       else if(response.status === 500){
+       throw 'Server error';
+    }
+      })
+      .then((responseJson) => {
+        this.setState({
+          isLoading: false,
+          firstName: responseJson.first_name,
+          lastName: responseJson.last_name,
+          email: responseJson.email,
+        })
+      })
+      .catch((error) => {
+          console.log(error);
+          ToastAndroid.show(error, ToastAndroid.SHORT);
+      })
+    }
 
   render(){
 
@@ -17,31 +69,25 @@ import Header from './Header';
         <Header />
         <ScrollView>
         <Text style={styles.profileTitle}>Profile</Text>
-        {/* <Image 
-          style={{width: 130, height: 130, }}
-          source={require('./Images/Profile.png')}
-          /> */}
-        <Text style={styles.info}>FIRST NAME</Text>
-        <Text style={styles.info}>LAST NAME</Text>
-        <Text style={styles.info}>EMAIL</Text>
+
+        <Text style={styles.info}>{this.state.firstName}</Text>
+        <Text style={styles.info}>{this.state.lastName}</Text>
+        <Text style={styles.info}>{this.state.email}</Text>
+      
         <TouchableOpacity
           onPress={() => navigation.navigate('MyReviews')}>
           <Text style={styles.link}>My Reviews</Text>
         </TouchableOpacity>
-        <Text style={styles.title2}>Update Info</Text>
-        <TextInput  style={styles.inputBox2} placeholder='First Name' />
-        <TextInput  style={styles.inputBox2} placeholder='Last Name' />
-        <TextInput  style={styles.inputBox2} placeholder='Email' />
-        <TextInput style={styles.inputBox2} placeholder='Password' />
         <TouchableOpacity
-          onPress={() => this.update()} >
-          <Text style={styles.submitButton}>Update</Text>
+          onPress={() => navigation.navigate('UpdateInfo')}>
+          <Text style={styles.link2}>Update Info</Text>
         </TouchableOpacity>
         </ScrollView>
       </View>
     )
   };
 }
+
 
 
 const styles = StyleSheet.create({
@@ -112,10 +158,20 @@ const styles = StyleSheet.create({
     fontSize: 19,
     textAlign: 'left',
     marginTop: 12,
-    marginLeft: 25
+    marginLeft: 25,
   },
 
   link: {
+    textAlign: 'left',
+    color: '#388dcb',
+    textDecorationLine: 'underline',
+    fontSize: 20,
+    marginTop: 25,
+    marginLeft: 25,
+    fontWeight: 'bold',
+  },
+
+  link2: {
     textAlign: 'left',
     color: '#388dcb',
     textDecorationLine: 'underline',
@@ -124,7 +180,6 @@ const styles = StyleSheet.create({
     marginLeft: 25,
     fontWeight: 'bold',
   }
-
 
 })
 

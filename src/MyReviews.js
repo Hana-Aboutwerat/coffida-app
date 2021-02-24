@@ -15,7 +15,7 @@ import Header from './Header';
     return (
       <View style={styles.container}>
         <Header />
-        <Text>My Reviews</Text>
+        <Text style={styles.title}>My Reviews</Text>
       </View>
     )
   };

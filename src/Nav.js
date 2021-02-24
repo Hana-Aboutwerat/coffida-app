@@ -8,8 +8,8 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 
 
 import Home from './Home';
-import Profile from './Profile';
 import Settings from './Settings';
+import StackNav from './StackNav';
 
 const Tab = createBottomTabNavigator();
 
@@ -42,7 +42,7 @@ class Nav extends Component {
             }}
         >
             <Tab.Screen name="Home" component={Home} />
-            <Tab.Screen name="Profile" component={Profile} />
+            <Tab.Screen name="Profile" component={StackNav} />
             <Tab.Screen name="Settings" component={Settings} />
           </Tab.Navigator>  
       )

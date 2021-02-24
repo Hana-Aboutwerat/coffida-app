@@ -1,12 +1,47 @@
 import 'react-native-gesture-handler';
 
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, ToastAndroid} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Header from './Header';
 
 
+
    class Home extends Component {
+     constructor(props){
+       super(props);
+
+       this.state = {
+         isLoading: true,
+         listData: []
+       }
+     }
+   
+    componentDidMount(){
+      this.getData()
+    }
+
+
+    getData = async () => {
+      const value = await AsyncStorage.getItem('@session_token');
+      return fetch("http://10.0.2.2:3333/api/1.0.0/find", {
+        'headers': {
+          'X-Authorization': value
+        }
+      })
+      .then((response) => {
+        if(response.status === 200){
+          return response.json()
+        } else {
+          throw 'Something went wrong';
+        }
+      })
+      .catch((error) => {
+          console.log(error);
+          ToastAndroid.show(error, ToastAndroid.SHORT);
+      })
+    }
 
   render(){
 

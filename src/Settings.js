@@ -1,10 +1,11 @@
 import 'react-native-gesture-handler';
 
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ToastAndroid} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Header from './Header';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 
    class Settings extends Component {
