@@ -22,8 +22,8 @@ import Header from './Header';
       .then((response) => {
         if(response.status === 200){
           this.props.navigation.navigate("Login");
-        } else {
-          throw 'Something went wrong'
+        } else if(response.status === 401){
+          throw 'Unauthorised'
         }
         })
       .catch((error) => {

@@ -1,10 +1,11 @@
 import 'react-native-gesture-handler';
 
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ToastAndroid} from 'react-native';
+import { StyleSheet, Text, View, ToastAndroid } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Header from './Header';
+import { FlatList } from 'react-native-gesture-handler';
 
 
 
@@ -14,14 +15,20 @@ import Header from './Header';
 
        this.state = {
          isLoading: true,
-         listData: []
+         locations: null
        }
      }
-   
+  
+
     componentDidMount(){
-      this.getData()
+      this._unsubscribe = this.props.navigation.addListener('focus', () => {
+        this.getData()
+      });   
     }
 
+    componentWillUnmount(){
+      this._unsubscribe();
+    }
 
     getData = async () => {
       const value = await AsyncStorage.getItem('@session_token');
@@ -37,6 +44,12 @@ import Header from './Header';
           throw 'Something went wrong';
         }
       })
+      .then((responseJson) => {
+        this.setState({
+          isLoading: false,
+          locations: responseJson
+        });
+      })
       .catch((error) => {
           console.log(error);
           ToastAndroid.show(error, ToastAndroid.SHORT);
@@ -51,6 +64,16 @@ import Header from './Header';
       <View style={styles.container}>
         <Header />
         <Text style={styles.title}>Find the best local coffee shops</Text>
+        <FlatList
+         data={this.state.locations}
+         renderItem={({item}) => (
+           <View style={{padding: 20}}>
+             <Text style={styles.locationInfo}>{item.location_name}</Text>
+             <Text style={styles.rating}>Rating: {item.avg_overall_rating}</Text>
+           </View>
+         )}
+         keyExtractor={(item) => item.location_id.toString()}
+        />
       </View>
     )
   };
@@ -69,44 +92,23 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 35,
     fontWeight: 'bold',
-    marginBottom: 25
+    marginBottom: 15
   },
 
-  inputBox: {
-    width: 250,
-    backgroundColor: '#F8F8FF',
-    borderColor: '#63ace1',
-    borderWidth: 2,
-    borderRadius: 5,
-    marginTop: 12,
-    marginLeft: 83,
-    paddingHorizontal: 16,
-    color: '#a6a6a6',
-    fontSize: 18
-
+  locationInfo: {
+      color: '#595959',
+      fontSize: 20,
+      textAlign: 'left',
+      marginLeft: 47,
   },
 
-  submitButton: {
-    width: 130,
-    backgroundColor: '#63ace1',
-    color: '#F8F8FF',
-    paddingTop: 10,
-    paddingBottom: 10,
-    textAlign:'center',
-    fontSize: 20,
-    borderRadius: 5,
-    marginTop: 25,
-    marginLeft: 140
+  rating: {
+    color: '#696969',
+    fontSize: 16,
+    textAlign: 'left',
+    marginLeft: 50,
+},
 
-  },
-
-  login: {
-    textAlign: 'center',
-    color: '#737373',
-    textDecorationLine: 'underline',
-    fontSize: 18,
-    marginTop: 10
-  }
 
 
 })

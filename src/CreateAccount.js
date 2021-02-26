@@ -13,7 +13,7 @@ import Header from './Header';
         firstName: '',
         lastName: '',
         email: '',
-        password: ''
+        password: '',
       }
     }
 
@@ -44,7 +44,6 @@ import Header from './Header';
     })
   
   }
-
     
   
   render(){
@@ -56,10 +55,31 @@ import Header from './Header';
         <Header />
         <ScrollView>
         <Text style={styles.title}>Create account</Text>
-        <TextInput  style={styles.inputBox} placeholder='First Name' onChangeText={(firstName) => this.setState({firstName})} value={this.state.firstName}/>
-        <TextInput  style={styles.inputBox} placeholder='Last Name' onChangeText={(lastName) => this.setState({lastName})} value={this.state.lastName}/>
-        <TextInput  style={styles.inputBox} placeholder='Email' onChangeText={(email) => this.setState({email})} value={this.state.email}/>
-        <TextInput  style={styles.inputBox} placeholder='Password' secureTextEntry={true} onChangeText={(password) => this.setState({password})} value={this.state.password}/>
+        <TextInput  
+         style={styles.inputBox}
+         placeholder='First Name' 
+         onChangeText={(firstName) => this.setState({firstName})} 
+         value={this.state.firstName} />
+
+        <TextInput
+          style={styles.inputBox}
+           placeholder='Last Name' 
+           onChangeText={(lastName) => this.setState({lastName})}
+            value={this.state.lastName}/>
+
+        <TextInput
+          style={styles.inputBox} 
+          placeholder='Email' 
+          onChangeText={(email) => this.setState({email})} 
+          value={this.state.email}/>
+
+        <TextInput  
+          style={styles.inputBox} 
+          placeholder='Password'
+           secureTextEntry={true} 
+           onChangeText={(password) => this.setState({password})} 
+           value={this.state.password}/>
+
         <TouchableOpacity
           onPress={() => this.addUser()} >
           <Text style={styles.submitButton}>Create</Text>        

@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
 
   info: {
     color: 'gray',
-    fontSize: 19,
+    fontSize: 20,
     textAlign: 'left',
     marginTop: 12,
     marginLeft: 25,
