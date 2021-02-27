@@ -5,11 +5,9 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 
-
-
-import Home from './Home';
 import Settings from './Settings';
 import StackNav from './StackNav';
+import StackNav2 from './StackNav2';
 
 const Tab = createBottomTabNavigator();
 
@@ -41,7 +39,7 @@ class Nav extends Component {
                inactiveTintColor: 'gray',
             }}
         >
-            <Tab.Screen name="Home" component={Home} />
+            <Tab.Screen name="Home" component={StackNav2} />
             <Tab.Screen name="Profile" component={StackNav} />
             <Tab.Screen name="Settings" component={Settings} />
           </Tab.Navigator>  

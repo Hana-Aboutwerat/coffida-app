@@ -1,11 +1,12 @@
 import 'react-native-gesture-handler';
 
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ToastAndroid } from 'react-native';
+import { StyleSheet, Text, View, ToastAndroid, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Header from './Header';
-import { FlatList } from 'react-native-gesture-handler';
+import Location from './Location';
+import { FlatList, ScrollView } from 'react-native-gesture-handler';
 
 
 
@@ -15,19 +16,14 @@ import { FlatList } from 'react-native-gesture-handler';
 
        this.state = {
          isLoading: true,
-         locations: null
+         locations: null,
+         location_id: null
        }
      }
   
 
     componentDidMount(){
-      this._unsubscribe = this.props.navigation.addListener('focus', () => {
         this.getData()
-      });   
-    }
-
-    componentWillUnmount(){
-      this._unsubscribe();
     }
 
     getData = async () => {
@@ -67,10 +63,12 @@ import { FlatList } from 'react-native-gesture-handler';
         <FlatList
          data={this.state.locations}
          renderItem={({item}) => (
+          <TouchableOpacity onPress={() => navigation.navigate('Info', {location_id: item.location_id})}>
            <View style={{padding: 20}}>
              <Text style={styles.locationInfo}>{item.location_name}</Text>
              <Text style={styles.rating}>Rating: {item.avg_overall_rating}</Text>
            </View>
+          </TouchableOpacity>  
          )}
          keyExtractor={(item) => item.location_id.toString()}
         />
@@ -96,17 +94,19 @@ const styles = StyleSheet.create({
   },
 
   locationInfo: {
-      color: '#595959',
+      color: '#666666',
       fontSize: 20,
       textAlign: 'left',
       marginLeft: 47,
+      fontWeight: 'bold'
   },
 
   rating: {
     color: '#696969',
-    fontSize: 16,
+    fontSize: 17,
     textAlign: 'left',
     marginLeft: 50,
+    fontFamily: 'Roboto'
 },
 
 

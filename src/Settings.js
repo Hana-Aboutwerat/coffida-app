@@ -33,9 +33,7 @@ import Header from './Header';
     }
 
   render(){
-
-    const navigation = this.props.navigation;
-
+  
     return (
       <View style={styles.container}>
         <Header />

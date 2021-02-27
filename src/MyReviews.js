@@ -9,9 +9,6 @@ import Header from './Header';
    class MyReviews extends Component {
 
   render(){
-
-    const navigation = this.props.navigation;
-
     return (
       <View style={styles.container}>
         <Header />
