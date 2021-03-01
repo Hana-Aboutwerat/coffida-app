@@ -5,18 +5,13 @@ import {Text, View, StyleSheet, ToastAndroid, TouchableOpacity, FlatList} from '
 import Header from './Header';
 import { ScrollView } from 'react-native-gesture-handler';
 
-class Location extends Component {
+class Reviews extends Component {
   constructor(props){
         super(props);
   
         this.state = {
          isLoading: true,
-         location_id: 0,
          location_name: '',
-         location_town: '',
-         avg_price_rating: '',
-         avg_quality_rating: '',
-         avg_clenliness_rating: '',
          reviews: null,
          review_id: null
         }
@@ -46,12 +41,7 @@ class Location extends Component {
         .then((responseJson) => {
           this.setState({
             isLoading: false,
-            location_id: responseJson.location_id,
             location_name: responseJson.location_name,
-            location_town: responseJson.location_town,
-            avg_price_rating: responseJson.avg_price_rating,
-            avg_quality_rating: responseJson.avg_quality_rating,
-            avg_clenliness_rating: responseJson.avg_clenliness_rating,
             reviews: responseJson.location_reviews
           });
         })
@@ -64,29 +54,24 @@ class Location extends Component {
 
       render(){
         const navigation = this.props.navigation;
+        const location_name = this.props.route.params.location_name;
         return (
         <View style={styles.container}>
         <Header />
-        <Text style={styles.title}>Location Info</Text>
-         <View style={{padding: 20}}>
-           <Text style={styles.locationInfo}>{this.state.location_name}</Text>
-           <Text style={styles.rating}>Location: {this.state.location_town}</Text>
-           <Text style={styles.rating}>Price rating: {this.state.avg_price_rating}</Text>
-           <Text style={styles.rating}>Quality rating: {this.state.avg_quality_rating}</Text>
-           <Text style={styles.rating}>Cleanliness: {this.state.avg_clenliness_rating}</Text>
-           <TouchableOpacity
-           onPress={() => navigation.navigate('Maps', {location_id: this.state.location_id})}>
-           <Text style={styles.link}>View Map</Text>
-           </TouchableOpacity>
-           <TouchableOpacity
-           onPress={() => navigation.navigate('Reviews', {location_id: this.state.location_id, location_name: this.state.location_name})}>
-           <Text style={styles.link}>Reviews</Text>
-           </TouchableOpacity>
-           <TouchableOpacity
-           onPress={() => navigation.navigate('Review', {location_name: this.state.location_name})}>
-           <Text style={styles.link}>Write a review</Text>
-           </TouchableOpacity>
-          </View>
+        <Text style={styles.title}>{location_name} Reviews</Text>
+           <FlatList
+             data={this.state.reviews}
+             renderItem={({item}) => (
+            <View style={styles.reviews}>
+             <Text style={styles.rating}>Overall rating: {item.overall_rating}</Text>
+             <Text style={styles.rating}>Price rating: {item.price_rating}</Text>
+             <Text style={styles.rating}>Quality rating: {item.quality_rating}</Text>
+             <Text style={styles.rating}>Cleanliness: {item.clenliness_rating}</Text>
+             <Text style={styles.rating}>Comment: "{item.review_body}."</Text>
+            </View>
+         )}
+         keyExtractor={(item) => item.review_id.toString()}
+          />
         </View>
         )
       };
@@ -137,9 +122,24 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 
+  subHeading: {
+    color: '#666666',
+    fontSize: 20,
+    textAlign: 'left',
+    marginLeft: 47,
+    fontWeight: 'bold',
+    marginTop: 30
+  },
   
+  reviews: {
+      marginBottom: 30,
+      backgroundColor: '#cce6ff',
+      padding: 10,
+      borderRadius: 10,
+      margin: 20
+  }
   
   })
 
 
-export default Location
+export default Reviews

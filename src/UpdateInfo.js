@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
   },
 
   inputBox2: {
-    width: 250,
+    width: 200,
     backgroundColor: '#F8F8FF',
     borderColor: '#63ace1',
     borderWidth: 2,
@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
     marginLeft: 25,
     paddingHorizontal: 16,
     color: '#a6a6a6',
-    fontSize: 18
+    fontSize: 18,
 
   },
 
@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginTop: 18,
     marginLeft: 25,
-    marginBottom: 10
+    marginBottom: 10,
 
   },
 

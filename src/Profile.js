@@ -113,51 +113,15 @@ const styles = StyleSheet.create({
     marginLeft: 25,
   },
 
-  inputBox2: {
-    width: 250,
-    backgroundColor: '#F8F8FF',
-    borderColor: '#63ace1',
-    borderWidth: 2,
-    borderRadius: 5,
-    marginTop: 6,
-    marginTop: 7,
-    marginLeft: 25,
-    paddingHorizontal: 16,
-    color: '#a6a6a6',
-    fontSize: 18
 
-  },
-
-  submitButton: {
-    width: 130,
-    backgroundColor: '#63ace1',
-    color: '#F8F8FF',
-    paddingTop: 10,
-    paddingBottom: 10,
-    textAlign:'center',
-    fontSize: 20,
-    borderRadius: 5,
-    marginTop: 18,
-    marginLeft: 30,
-    marginBottom: 10
-
-  },
-
-  login: {
-    textAlign: 'center',
-    color: '#737373',
-    textDecorationLine: 'underline',
-    fontSize: 18,
-    marginTop: 10
-  },
 
   profileTitle: {
     color: '#388dcb',
     fontSize: 25,
     textAlign: 'left',
-    marginTop: 20,
+    marginTop: 30,
     fontWeight: 'bold',
-    marginLeft: 25
+    marginLeft: 30
   },
 
   info: {
@@ -165,7 +129,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'left',
     marginTop: 12,
-    marginLeft: 25,
+    marginLeft: 30,
   },
 
   link: {
@@ -174,7 +138,7 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
     fontSize: 20,
     marginTop: 25,
-    marginLeft: 25,
+    marginLeft: 30,
     fontWeight: 'bold',
   },
 
@@ -184,7 +148,7 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
     fontSize: 20,
     marginTop: 10,
-    marginLeft: 25,
+    marginLeft: 30,
     fontWeight: 'bold',
   }
 
