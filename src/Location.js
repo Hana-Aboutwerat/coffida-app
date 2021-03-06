@@ -71,9 +71,9 @@ class Location extends Component {
          <View style={{padding: 20}}>
            <Text style={styles.locationInfo}>{this.state.location_name}</Text>
            <Text style={styles.rating}>Location: {this.state.location_town}</Text>
-           <Text style={styles.rating}>Price rating: {this.state.avg_price_rating}</Text>
-           <Text style={styles.rating}>Quality rating: {this.state.avg_quality_rating}</Text>
-           <Text style={styles.rating}>Cleanliness: {this.state.avg_clenliness_rating}</Text>
+           <Text style={styles.rating}>Price rating: {Math.round(this.state.avg_price_rating)}</Text>
+           <Text style={styles.rating}>Quality rating: {Math.round(this.state.avg_quality_rating)}</Text>
+           <Text style={styles.rating}>Cleanliness: {Math.round(this.state.avg_clenliness_rating)}</Text>
            <TouchableOpacity
            onPress={() => navigation.navigate('Maps', {location_id: this.state.location_id})}>
            <Text style={styles.link}>View Map</Text>
@@ -83,7 +83,7 @@ class Location extends Component {
            <Text style={styles.link}>Reviews</Text>
            </TouchableOpacity>
            <TouchableOpacity
-           onPress={() => navigation.navigate('Review', {location_name: this.state.location_name})}>
+           onPress={() => navigation.navigate('Review', {location_name: this.state.location_name, location_id: this.state.location_id })}>
            <Text style={styles.link}>Write a review</Text>
            </TouchableOpacity>
           </View>

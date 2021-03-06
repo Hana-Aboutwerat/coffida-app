@@ -190,19 +190,13 @@ const styles = StyleSheet.create({
   },
 
   submitButton: {
-    width: 100,
-    backgroundColor: '#63ace1',
-    color: '#F8F8FF',
-    paddingTop: 12,
-    paddingBottom: 12,
-    paddingLeft: 8,
-    paddingRight: 8,
-    textAlign:'center',
-    fontSize: 20,
-    borderRadius: 5,
-    marginTop: 18,
-    marginLeft: 25,
-    marginBottom: 10,
+    textDecorationLine: 'underline',
+    fontSize: 18,
+    marginTop: 5,
+    marginLeft: 30,
+    color: '#388dcb',
+    fontWeight: 'bold',
+    marginBottom: 8
 
   },
 
