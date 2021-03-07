@@ -3,7 +3,6 @@ import React, {Component} from 'react';
 import {Text, View, StyleSheet, ToastAndroid, TouchableOpacity, FlatList} from 'react-native';
 
 import Header from './Header';
-import { ScrollView } from 'react-native-gesture-handler';
 
 class Reviews extends Component {
   constructor(props){

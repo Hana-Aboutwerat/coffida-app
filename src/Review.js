@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 import React, {Component} from 'react';
 import {Text, View, StyleSheet, ToastAndroid, TouchableOpacity, TextInput, Alert} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {Rating, AirbnbRating} from 'react-native-elements';
+import {AirbnbRating} from 'react-native-elements';
 
 import Header from './Header';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
     height: 130,
     backgroundColor: '#F8F8FF',
     borderColor: '#63ace1',
-    borderWidth: 2,
+    borderWidth: 3,
     borderRadius: 5,
     marginTop: 12,
     marginLeft: 30,
@@ -236,7 +236,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 6
   }
-
   
   })
 

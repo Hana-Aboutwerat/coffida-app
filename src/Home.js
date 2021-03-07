@@ -56,6 +56,13 @@ import { FlatList, ScrollView } from 'react-native-gesture-handler';
 
     const navigation = this.props.navigation;
 
+    if(this.state.isLoading){
+      return (
+          <View>
+              <Text style={styles.loading}>Loading...</Text>
+          </View>
+      )
+  } else {
     return (
       <View style={styles.container}>
         <Header />
@@ -74,6 +81,7 @@ import { FlatList, ScrollView } from 'react-native-gesture-handler';
         />
       </View>
     )
+    }
   };
 }
 
@@ -109,7 +117,11 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto'
 },
 
-
+loading: {
+  textAlign: 'center',
+  marginTop: 280,
+  fontSize: 20
+}
 
 })
 

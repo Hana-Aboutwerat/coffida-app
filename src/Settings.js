@@ -6,8 +6,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Header from './Header';
 
-
-
    class Settings extends Component {
 
     logout = async () => {
@@ -89,9 +87,6 @@ const styles = StyleSheet.create({
     marginLeft: 140
 
   },
-
-
-
 
 })
 

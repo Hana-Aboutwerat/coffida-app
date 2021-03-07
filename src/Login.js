@@ -6,7 +6,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Header from './Header';
 
-
    class Login extends Component {
      constructor(props){
        super(props);
@@ -119,7 +118,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginTop: 10
   }
-
 
 })
 

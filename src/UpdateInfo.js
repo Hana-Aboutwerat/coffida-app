@@ -6,7 +6,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Header from './Header';
 
-
    class UpdateInfo extends Component {
     constructor(props) {
         super(props)
@@ -156,7 +155,6 @@ import Header from './Header';
 }
 
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -234,7 +232,6 @@ const styles = StyleSheet.create({
     marginLeft: 25,
     fontWeight: 'bold',
   }
-
 
 })
 

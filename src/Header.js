@@ -35,7 +35,6 @@ const styles = StyleSheet.create({
     color: '#F8F8FF',
   },
 
-
   
 })
 

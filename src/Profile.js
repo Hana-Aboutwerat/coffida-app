@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 
-import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity, ToastAndroid} from 'react-native';
+import React, {Component} from 'react';
+import {StyleSheet, Text, View, ScrollView, TouchableOpacity, ToastAndroid} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Header from './Header';
@@ -59,6 +59,7 @@ import Header from './Header';
           firstName: responseJson.first_name,
           lastName: responseJson.last_name,
           email: responseJson.email,
+          user_id: responseJson.user_id
         })
       })
       .catch((error) => {
@@ -70,7 +71,14 @@ import Header from './Header';
   render(){
 
     const navigation = this.props.navigation;
-
+     
+    if(this.state.isLoading){
+      return (
+          <View>
+              <Text style={styles.loading}>Loading...</Text>
+          </View>
+      )
+  } else {
     return (
       <View style={styles.container}>
         <Header />
@@ -82,16 +90,13 @@ import Header from './Header';
         <Text style={styles.info}>{this.state.email}</Text>
       
         <TouchableOpacity
-          onPress={() => navigation.navigate('MyReviews')}>
-          <Text style={styles.link}>My Reviews</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
           onPress={() => navigation.navigate('UpdateInfo')}>
           <Text style={styles.link2}>Update Info</Text>
         </TouchableOpacity>
         </ScrollView>
       </View>
     )
+   }
   };
 }
 
@@ -112,8 +117,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginLeft: 25,
   },
-
-
 
   profileTitle: {
     color: '#388dcb',
@@ -147,10 +150,16 @@ const styles = StyleSheet.create({
     color: '#388dcb',
     textDecorationLine: 'underline',
     fontSize: 20,
-    marginTop: 10,
+    marginTop: 15,
     marginLeft: 30,
     fontWeight: 'bold',
-  }
+  },
+
+  loading: {
+    textAlign: 'center',
+    marginTop: 280,
+    fontSize: 20
+}
 
 })
 

@@ -29,7 +29,7 @@ class Nav extends Component {
                }
 
                return <Ionicons name={iconName} size={size} color={color} />;
-
+               
                 },
            
             })}
@@ -46,6 +46,5 @@ class Nav extends Component {
       )
     };
   }
-  
-  
+   
   export default Nav
