@@ -12,7 +12,7 @@ import Logo from './Images/Logo.png'
             style={{width: 60, height: 60, }}
             source={require('./Images/Logo.png')}
           />
-          <Text style={styles.headerText}>Coffida</Text>
+          <Text style={styles.headerText}>CoffiDa</Text>
       </View>
     )
   };

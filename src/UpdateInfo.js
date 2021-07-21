@@ -23,8 +23,7 @@ import Header from './Header';
           first_name: this.state.firstName
         };
     
-        const ID = await AsyncStorage.getItem('@user_id');
-        const id = JSON.parse(ID);
+        const id = await AsyncStorage.getItem('@user_id');
         const value = await AsyncStorage.getItem('@session_token');
         return fetch("http://10.0.2.2:3333/api/1.0.0/user/" + id, {
           method: 'patch',
@@ -49,8 +48,7 @@ import Header from './Header';
           last_name: this.state.lastName
         };
     
-        const ID = await AsyncStorage.getItem('@user_id');
-        const id = JSON.parse(ID);
+        const id = await AsyncStorage.getItem('@user_id');
         const value = await AsyncStorage.getItem('@session_token');
         return fetch("http://10.0.2.2:3333/api/1.0.0/user/" + id, {
           method: 'patch',
@@ -74,8 +72,7 @@ import Header from './Header';
           email: this.state.email
         };
     
-        const ID = await AsyncStorage.getItem('@user_id');
-        const id = JSON.parse(ID);
+        const id = await AsyncStorage.getItem('@user_id');
         const value = await AsyncStorage.getItem('@session_token');
         return fetch("http://10.0.2.2:3333/api/1.0.0/user/" + id, {
           method: 'patch',
@@ -99,8 +96,7 @@ import Header from './Header';
           password: this.state.password
         };
     
-        const ID = await AsyncStorage.getItem('@user_id');
-        const id = JSON.parse(ID);
+        const id = await AsyncStorage.getItem('@user_id');
         const value = await AsyncStorage.getItem('@session_token');
         return fetch("http://10.0.2.2:3333/api/1.0.0/user/" + id, {
           method: 'patch',

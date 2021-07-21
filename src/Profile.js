@@ -31,8 +31,7 @@ import Header from './Header';
     }
 
     getInfo = async () => {
-      const ID = await AsyncStorage.getItem('@user_id');
-      const id = JSON.parse(ID);
+      const id = await AsyncStorage.getItem('@user_id');
       const value = await AsyncStorage.getItem('@session_token');
       return fetch("http://10.0.2.2:3333/api/1.0.0/user/" + id, {
         'headers': {
@@ -59,7 +58,6 @@ import Header from './Header';
           firstName: responseJson.first_name,
           lastName: responseJson.last_name,
           email: responseJson.email,
-          user_id: responseJson.user_id
         })
       })
       .catch((error) => {
@@ -89,6 +87,11 @@ import Header from './Header';
         <Text style={styles.info}>{this.state.lastName}</Text>
         <Text style={styles.info}>{this.state.email}</Text>
       
+        <TouchableOpacity
+          onPress={() => navigation.navigate('MyReviews')}>
+          <Text style={styles.link2}>My Reviews</Text>
+        </TouchableOpacity>
+
         <TouchableOpacity
           onPress={() => navigation.navigate('UpdateInfo')}>
           <Text style={styles.link2}>Update Info</Text>

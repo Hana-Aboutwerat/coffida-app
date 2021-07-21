@@ -87,7 +87,8 @@ class Review extends Component {
         size={25}
         maxStars={5}
         defaultRating={0}
-        reviewSize= {22}
+        reviewSize={22}
+        fullStarColor='#63ace1'
         onFinishRating={(rating) => this.ratingCompleted(rating, "overall_rating")}
       />
     </View>
@@ -99,6 +100,7 @@ class Review extends Component {
         maxStars={5}
         defaultRating={0}
         reviewSize= {22}
+        fullStarColor='#63ace1'
         onFinishRating={(rating) => this.ratingCompleted(rating, "price_rating")}
       />
       </View>
@@ -110,6 +112,7 @@ class Review extends Component {
         maxStars={5}
         defaultRating={0}
         reviewSize= {22}
+        fullStarColor='#63ace1'
         onFinishRating={(rating) => this.ratingCompleted(rating, "quality_rating")}
       />
       </View>
@@ -121,6 +124,7 @@ class Review extends Component {
         maxStars={5}
         defaultRating={0}
         reviewSize= {22}
+        fullStarColor='#63ace1'
         onFinishRating={(rating) => this.ratingCompleted(rating, "clenliness_rating")}
       />
     </View>
